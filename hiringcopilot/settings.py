@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #my app
     'rest_framework',
     'jobs',
+    'accounts',
 ]
 
 MIDDLEWARE = [
