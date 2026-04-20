@@ -20,7 +20,7 @@ def company_signup(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             CompanyProfile.objects.create(user=user, company_name=company_name, industry=industry, location=location)
             login(request, user)
-            return redirect('/admin')
+            return redirect('company_dashboard')
     else:
         form = CompanysignupForm()
     return render(request, 'accounts/company_signup.html', {'form': form})
@@ -42,7 +42,17 @@ def candidate_signup(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             CandidateProfile.objects.create(user=user, full_name=full_name, phone=phone, skills=skills, desired_role=desired_role)
             login(request, user)
-            return redirect('/admin')
+            return redirect('candidate_dashboard') 
     else:
         form = CandidatesignupForm()
     return render(request, 'accounts/candidate_signup.html', {'form': form})
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def company_dashboard(request):
+    return render(request, 'accounts/company_dashboard.html', {})
+
+@login_required
+def candidate_dashboard(request):
+    return render(request, 'accounts/candidate_dashboard.html', {})
