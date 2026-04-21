@@ -15,5 +15,8 @@ class CandidatesignupForm(forms.Form):
     skills=forms.CharField(widget=forms.Textarea)
     phone=forms.CharField(max_length=30)
     desired_role=forms.CharField(max_length=100)
-
+class LoginForm(forms.Form):
+    username=forms.CharField(max_length=100)
+    password=forms.CharField(widget=forms.PasswordInput())
+    
 
